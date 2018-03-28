@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_hello_jnicallback"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hellojnicallback.MainActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_above="@+id/rg">
+
+    </android.support.v4.view.ViewPager>
+    <com.example.hellojnicallback.MyViewGroup
+        android:id="@+id/content"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rg">
+        <com.example.hellojnicallback.MyView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        </com.example.hellojnicallback.MyViewGroup>
+
+    <TextView
+        android:layout_above="@+id/rg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Hello World!"
+        android:id="@+id/hellojniMsg"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="129dp"
+        tools:layout_editor_absoluteY="222dp"
+        tools:layout_constraintLeft_creator="0"
+        tools:layout_constraintTop_creator="0"
+        tools:layout_constraintRight_creator="0"
+        tools:layout_constraintBottom_creator="0"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintVertical_bias="0.45" />
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/rb1"
+            android:text="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"/>
+        <RadioButton
+            android:id="@+id/rb2"
+            android:text="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <RadioButton
+            android:id="@+id/rb3"
+            android:text="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <RadioButton
+            android:id="@+id/rb4"
+            android:text="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </RadioGroup>
+    <TextView
+        android:text="00:00:00"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="222dp"
+        android:id="@+id/tickView"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        tools:layout_constraintLeft_creator="0"
+        tools:layout_constraintTop_creator="0"
+        tools:layout_constraintRight_creator="0"
+        tools:layout_constraintBottom_creator="0" />
+
+
+</RelativeLayout>

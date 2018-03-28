@@ -1,0 +1,7 @@
+# ninja log v5
+0	138	0	CMakeFiles/hello-jnicallback.dir/hello-jnicallback.c.o	40305d35b6585833
+138	214	0	C:/Users/Administrator/Downloads/android-ndk-master/hello-jniCallback/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libhello-jnicallback.so	d03e0ec229b8c72c
+5	317	0	CMakeFiles/hello-jnicallback.dir/hello-jnicallback.c.o	40305d35b6585833
+317	501	0	C:/Users/Administrator/Downloads/android-ndk-master/hello-jniCallback/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libhello-jnicallback.so	d03e0ec229b8c72c
+1	160	0	CMakeFiles/hello-jnicallback.dir/hello-jnicallback.c.o	40305d35b6585833
+160	239	0	C:/Users/Administrator/Downloads/android-ndk-master/hello-jniCallback/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libhello-jnicallback.so	d03e0ec229b8c72c

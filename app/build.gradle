@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    defaultConfig {
+        applicationId 'com.example.hellojnicallback'
+        minSdkVersion 21
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
+        println "hellocallback --dexOptions"
+        def listFile=project.rootDir.absolutePath+'/app/main-dex-rule.txt'
+//        if (additionalParameters==null){
+//            println "additionalParameters --is null"
+//            additionalParameters = ['--multi-dex']
+////        additionalParameters+='--multi-dex'
+//            additionalParameters+='--main-dex-list='+listFile
+//            additionalParameters+='--minimal-main-dex'
+//        }
+
+
+        additionalParameters = ['--multi-dex','--main-dex-list='+listFile,'--minimal-main-dex']
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+        }
+    }
+//    externalNativeBuild {
+//        cmake {
+//            path "src/main/cpp/CMakeLists.txt"
+//        }
+//    }
+
+
+}
+//android.applicationVariants.all {
+//    variant ->
+//        dex.doFirst{
+//            dex->
+//                if (dex.additionalParameters == null) {
+//                    dex.additionalParameters = []
+//                }
+//                dex.additionalParameters += '--set-max-idx-number=48000'
+//
+//        }
+//}
+afterEvaluate{
+    println "hellocallback --afterEvaluate"
+    tasks.matching{
+//        println "matching--->"+it.name
+        it.name.startsWith('dex')
+
+    }.each{
+        dx->
+            def listFile=project.rootDir.absolutePath+'/app/mian-dex-rule.txt';
+            println "dex task found "+dx.name
+            if(dx.additionalParameters==null){
+                dx.additionalParameters=[]
+            }
+            dx.additionlParameters+='--multi-dex'
+            dx.additionlParameters+='--main-dex-list='+listFile
+            dx.additionlParameters+='--minimal-main-dex'
+
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:25.4.0'
+    compile 'com.android.support:multidex:1.0.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:25.3.1'
+}

@@ -1,0 +1,3 @@
+C:/Users/Administrator/Downloads/android-ndk-master/hello-jniCallback/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/hello-jnicallback.dir
+C:/Users/Administrator/Downloads/android-ndk-master/hello-jniCallback/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/edit_cache.dir
+C:/Users/Administrator/Downloads/android-ndk-master/hello-jniCallback/app/.externalNativeBuild/cmake/release/mips/CMakeFiles/rebuild_cache.dir
