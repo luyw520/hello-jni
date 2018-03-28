@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 版权所有，未经同意请勿转载！猴子搬来的救兵 http://blog.csdn.net/mynameishuangshuai -->
+<!-- project项目标签 -->
+<project
+    name="HelloCallback"
+    default="release" >
+
+    <!-- 项目编译环境配置 -->
+
+    <property
+        name="sdk-folder"
+        value="C:\Android\sdk" />
+
+    <property
+        name="platform-folder"
+        value="${sdk-folder}\platforms\android-20" />
+
+    <property
+        name="platform-tools-folder"
+        value="${sdk-folder}\build-tools\android-4.4W" />
+
+    <property
+        name="jdk-folder"
+        value="C:\Java\jdk1.7.0_67" />
+
+    <property
+        name="android-jar"
+        value="${platform-folder}\android.jar" />
+
+    <property
+        name="tools.aapt"
+        value="${platform-tools-folder}/aapt.exe" />
+
+    <property
+        name="tools.javac"
+        value="${jdk-folder}\bin\javac.exe" />
+
+    <property
+        name="tools.dx"
+        value="${platform-tools-folder}\dx.bat" />
+
+    <property
+        name="tools.apkbuilder"
+        value="${sdk-folder}\tools\apkbuilder.bat" />
+
+    <property
+        name="tools.jarsigner"
+        value="${jdk-folder}\bin\jarsigner.exe" />
+
+    <!-- 项目输入目录配置 -->
+
+    <property
+        name="project-dir"
+        value="." />
+
+    <property
+        name="assets"
+        value="${project-dir}\assets" />
+
+    <property
+        name="res"
+        value="${project-dir}\res" />
+
+    <property
+        name="src"
+        value="${project-dir}\java" />
+
+    <property
+        name="libs"
+        value="${project-dir}\libs" />
+
+    <!-- 项目输出目录配置 -->
+
+    <property
+        name="bin"
+        value="${project-dir}\bin" />
+
+    <property
+        name="gen"
+        value="${project-dir}\gen" />
+
+    <property
+        name="manifest"
+        value="${project-dir}\AndroidManifest.xml" />
+    <!-- 生成文件放置地方 -->
+
+    <property
+        name="java-file-gen"
+        value="${gen}\com\example\hellojnicallback\*.java" />
+
+    <property
+        name="java-file-src"
+        value="${src}\com\example\hellojnicallback\*.java" />
+
+    <property
+        name="main-dex-name"
+        value="${bin}\classes.dex" />
+
+    <property
+        name="sub-dex-name"
+        value="${bin}\classes2.dex" />
+
+    <property
+        name="package-temp-name"
+        value="${bin}\${ant.project.name}.arsc" />
+    <!-- 未签名包 -->
+
+    <property
+        name="unsigned-apk-name"
+        value="${ant.project.name}_unsigned.apk" />
+
+    <property
+        name="unsigned-apk-path"
+        value="${bin}\${unsigned-apk-name}" />
+    <!-- 签名包 -->
+
+    <property
+        name="signed-apk-name"
+        value="${ant.project.name}.apk" />
+
+    <property
+        name="signed-apk-path"
+        value="${bin}\${signed-apk-name}" />
+    <!-- 密钥 -->
+
+    <property
+        name="keystore-name"
+        value="${project-dir}\castiel_key.keystore" />
+
+    <property
+        name="keystore-alias"
+        value="castiel" />
+
+    <property
+        name="main-dex-rule"
+        value="${project-dir}\main-dex-rule.txt" />
+
+    <taskdef resource="net/sf/antcontrib/antlib.xml" />
+
+    <!-- 初始化target -->
+
+    <target name="init" >
+
+        <echo message="init..." />
+
+        <delete includeemptydirs="true" >
+
+            <fileset dir="${bin}" >
+
+                <include name="**/*" >
+                </include>
+            </fileset>
+        </delete>
+
+        <mkdir dir="${bin}" />
+    </target>
+
+    <!-- 生成R.java类文件 -->
+
+    <target
+        name="gen-R"
+        depends="init" >
+
+        <echo message="Generating R.java from the resources." />
+
+        <exec
+            executable="${tools.aapt}"
+            failonerror="true" >
+
+            <!-- package表示打包 -->
+
+            <arg value="package" />
+
+            <arg value="-f" />
+
+            <arg value="-m" />
+
+            <arg value="-J" />
+
+            <arg value="${gen}" />
+
+            <arg value="-S" />
+
+            <arg value="${res}" />
+
+            <arg value="-M" />
+
+            <arg value="${manifest}" />
+
+            <arg value="-I" />
+
+            <arg value="${android-jar}" />
+        </exec>
+    </target>
+
+    <!-- 编译源文件生成对应的class文件 -->
+
+    <target
+        name="compile"
+        depends="gen-R" >
+
+        <echo message="compile..." />
+
+        <javac
+            bootclasspath="${android-jar}"
+            compiler="javac1.7"
+            destdir="${bin}"
+            encoding="utf-8"
+            includeantruntime="false"
+            listfiles="true"
+            target="1.7" >
+
+            <src path="${project-dir}" />
+
+            <classpath>
+
+                <!-- 引入第三方jar包所需要引用，用于辅助编译，并没有将jar打包进去。 -->
+
+                <fileset
+                    dir="${libs}"
+                    includes="*.jar" />
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- 构建多分包dex文件 -->
+
+    <target
+        name="multi-dex"
+        depends="compile" >
+
+        <echo message="Generate multi-dex..." />
+
+        <exec
+            executable="${tools.dx}"
+            failonerror="true" >
+            <arg value="--dex" />
+            <arg value="--multi-dex" />
+            <!-- 多分包命令，每个包最大的方法数为10000 -->
+            <arg value="--set-max-idx-number=10000" />
+            <arg value="--main-dex-list" />
+            <!-- 主包包含class文件列表 -->
+            <arg value="${main-dex-rule}" />
+            <arg value="--minimal-main-dex" />
+            <arg value="--output=${bin}" />
+            <!-- 把bin下所有class打包 -->
+            <arg value="${bin}" />
+            <!-- 把libs下所有jar打包 -->
+            <!-- <arg value="${libs}" /> -->
+        </exec>
+    </target>
+
+    <!-- 打包资源文件(包括res、assets、AndroidManifest.xml) -->
+
+    <target
+        name="package"
+        depends="multi-dex" >
+
+        <echo message="package-res-and-assets..." />
+
+        <exec
+            executable="${tools.aapt}"
+            failonerror="true" >
+
+            <arg value="package" />
+
+            <arg value="-f" />
+
+            <arg value="-S" />
+
+            <arg value="${res}" />
+
+            <arg value="-A" />
+
+            <arg value="${assets}" />
+
+            <arg value="-M" />
+
+            <arg value="${manifest}" />
+
+            <arg value="-I" />
+
+            <arg value="${android-jar}" />
+
+            <arg value="-F" />
+            <!-- 放到临时目录中 -->
+
+            <arg value="${package-temp-name}" />
+        </exec>
+    </target>
+    <!-- 对临时目录进行打包 -->
+
+    <target
+        name="build-unsigned-apk"
+        depends="package" >
+
+        <echo message="Build-unsigned-apk" />
+
+        <java
+            classname="com.android.sdklib.build.ApkBuilderMain"
+            classpath="${sdk-folder}/tools/lib/sdklib.jar" >
+
+            <!-- 输出路径 -->
+
+            <arg value="${unsigned-apk-path}" />
+
+            <arg value="-u" />
+
+            <arg value="-z" />
+
+            <arg value="${package-temp-name}" />
+
+            <arg value="-f" />
+
+            <arg value="${main-dex-name}" />
+
+            <arg value="-rf" />
+
+            <arg value="${src}" />
+
+            <arg value="-rj" />
+
+            <arg value="${libs}" />
+        </java>
+    </target>
+
+    <!-- 拷贝文件到apk项目的根目录下 -->
+
+    <target
+        name="copy_dex"
+        depends="build-unsigned-apk" >
+
+        <echo message="copy dex..." />
+
+        <copy todir="${project-dir}" >
+
+            <fileset dir="${bin}" >
+
+                <include name="classes*.dex" />
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- 循环遍历bin目录下的所有dex文件 -->
+    <target
+        name="add-subdex-toapk"
+        depends="copy_dex" >
+
+        <echo message="Add subdex to apk..." />
+
+        <foreach
+            param="dir.name"
+            target="aapt-add-dex" >
+
+            <path>
+
+                <fileset
+                    dir="${bin}"
+                    includes="classes*.dex" />
+            </path>
+        </foreach>
+    </target>
+
+    <!-- 使用aapt命令添加dex文件 -->
+
+    <target name="aapt-add-dex" >
+        <echo message="${dir.name}" />
+        <echo message="执行了app" />
+        <!-- 使用正则表达式获取classes的文件名 -->
+        <propertyregex
+            casesensitive="false"
+            input="${dir.name}"
+            property="dexfile"
+            regexp="classes(.*).dex"
+            select="\0" />
+        <if>
+            <equals
+                arg1="${dexfile}"
+                arg2="classes.dex" />
+            <then>
+                <echo>
+                   ${dexfile} is not handle
+                </echo>
+            </then>
+            <else>
+                <echo>
+                    ${dexfile} is handle
+                </echo>
+                <exec
+                    executable="${tools.aapt}"
+                    failonerror="true" >
+                    <arg value="add" />
+                    <arg value="${unsigned-apk-path}" />
+                    <arg value="${dexfile}" />
+                </exec>
+            </else>
+        </if>
+        <delete file="${project-dir}\${dexfile}" />
+    </target>
+
+    <!-- 生成签名的apk -->
+    <target
+        name="sign-apk"
+        depends="add-subdex-toapk" >
+
+        <echo message="Sign apk..." />
+
+        <exec
+            executable="${tools.jarsigner}"
+            failonerror="true" >
+            <!-- keystore -->
+            <arg value="-keystore" />
+            <arg value="${keystore-name}" />
+            <!-- 秘钥 -->
+            <arg value="-storepass" />
+            <arg value="123456" />
+            <!-- 秘钥口令 -->
+            <arg value="-keypass" />
+            <arg value="123456" />
+            <arg value="-signedjar" />
+            <!-- 签名的apk -->
+            <arg value="${signed-apk-path}" />
+            <!-- 未签名的apk -->
+            <arg value="${unsigned-apk-path}" />
+            <!-- 别名 -->
+            <arg value="${keystore-alias}" />
+        </exec>
+    </target>
+
+    <!-- 签名发布 -->
+
+    <target
+        name="release"
+        depends="sign-apk" >
+
+        <delete file="${package-temp-name}" />
+
+        <delete file="${unsigned-apk-path}" />
+
+        <echo>
+APK is released.path:${signed-apk-path}
+
+        </echo>
+    </target>
+
+</project> 
