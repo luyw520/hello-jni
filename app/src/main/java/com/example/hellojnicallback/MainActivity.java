@@ -45,6 +45,7 @@ import com.alipay.euler.andfix.AndFix;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import dalvik.system.DexFile;
@@ -118,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(MainActivity.class.getSimpleName(),"解决bug后"+String.valueOf(new BugTest().testBug()));
             }
         });
+      ;
+        Log.d(MainActivity.class.getSimpleName()," "+ getClassLoader());
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},12);
         AndFix.setup();
     }
@@ -141,8 +144,12 @@ public class MainActivity extends AppCompatActivity {
             }
             //加载dex文件
             DexFile dexFile=new DexFile(dexPath);
-            //加载解决bug的类
-            Class clazz=dexFile.loadClass("com.example.hellojnicallback.JniHandler",getClassLoader());
+            Enumeration<String> entries=dexFile.entries();
+            while(entries.hasMoreElements()){
+                String s=entries.nextElement();
+                Log.d(getClass().getSimpleName(),"s:"+s);
+                          //加载解决bug的类
+            Class clazz=dexFile.loadClass(s,getClassLoader());
             Method[] methods=clazz.getMethods();
             for (Method m:methods){
                 //通过注解找到要解决BUG的方法
@@ -158,6 +165,8 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(getClass().getSimpleName(),"替换成功");
                 }
             }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
