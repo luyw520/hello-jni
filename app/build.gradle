@@ -4,7 +4,7 @@ android {
     buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId 'com.example.hellojnicallback'
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -56,26 +56,26 @@ android {
 //
 //        }
 //}
-afterEvaluate{
-    println "hellocallback --afterEvaluate"
-    tasks.matching{
-//        println "matching--->"+it.name
-        it.name.startsWith('dex')
-
-    }.each{
-        dx->
-            def listFile=project.rootDir.absolutePath+'/app/mian-dex-rule.txt';
-            println "dex task found "+dx.name
-            if(dx.additionalParameters==null){
-                dx.additionalParameters=[]
-            }
-            dx.additionlParameters+='--multi-dex'
-            dx.additionlParameters+='--main-dex-list='+listFile
-            dx.additionlParameters+='--minimal-main-dex'
-
-    }
-
-}
+//afterEvaluate{
+//    println "hellocallback --afterEvaluate"
+//    tasks.matching{
+////        println "matching--->"+it.name
+//        it.name.startsWith('dex')
+//
+//    }.each{
+//        dx->
+//            def listFile=project.rootDir.absolutePath+'/app/mian-dex-rule.txt';
+//            println "dex task found "+dx.name
+//            if(dx.additionalParameters==null){
+//                dx.additionalParameters=[]
+//            }
+//            dx.additionlParameters+='--multi-dex'
+//            dx.additionlParameters+='--main-dex-list='+listFile
+//            dx.additionlParameters+='--minimal-main-dex'
+//
+//    }
+//
+//}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -83,4 +83,5 @@ dependencies {
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
+    compile 'com.android.volley:volley:1.1.0'
 }

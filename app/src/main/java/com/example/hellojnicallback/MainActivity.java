@@ -17,9 +17,9 @@ package com.example.hellojnicallback;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.IdRes;
 import android.support.annotation.Keep;
 import android.support.annotation.Nullable;
@@ -43,12 +43,10 @@ import android.widget.Toast;
 import com.alipay.euler.andfix.AndFix;
 
 import java.io.File;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 
-import dalvik.system.DexFile;
+import static com.example.hellojnicallback.MergeDexUtil.FIX_DEX_PATH;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,8 +82,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (checkedId){
                     case R.id.rb1:
                         newFragment=fragment1;
+                        fixBug();
+                        Toast.makeText(MainActivity.this,"AndFix方式修复成功",Toast.LENGTH_LONG).show();
                         break;
                     case R.id.rb2:
+                        fix2Bug();
+                        Toast.makeText(MainActivity.this,"Dex插入前面方式修复成功",Toast.LENGTH_LONG).show();
                         newFragment=fragment2;
                         break;
                     case R.id.rb3:
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         newFragment=fragment4;
                         break;
                 }
-                fixBug();
+
                 checkFragment(lastFragment,newFragment,false);
                 lastFragment=newFragment;
             }
@@ -115,61 +117,37 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.hellojniMsg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((TextView)v).setText(String.valueOf(new BugTest().testBug()));
-                Log.d(MainActivity.class.getSimpleName(),"解决bug后"+String.valueOf(new BugTest().testBug()));
+                try {
+                    ((TextView)v).setText(String.valueOf(new BugTest().testBug()));
+                }catch (Exception e){
+                    Log.d(MainActivity.class.getSimpleName(),e.toString());
+                    ((TextView)v).setText(String.valueOf(e.toString()));
+                }
+
+//                Log.d(MainActivity.class.getSimpleName(),"解决bug后"+String.valueOf(new BugTest().testBug()));
+//                Toast.makeText(MainActivity.this,"toast弹框",Toast.LENGTH_SHORT).show();
             }
         });
       ;
         Log.d(MainActivity.class.getSimpleName()," "+ getClassLoader());
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},12);
         AndFix.setup();
+
+        File fixDir = getDir(FIX_DEX_PATH, Context.MODE_PRIVATE);
+        Log.d(MainActivity.class.getSimpleName(),fixDir.getAbsolutePath());
+       ClassLoader classLoader= getClassLoader();
+        Log.d(MainActivity.class.getSimpleName(),classLoader.toString());
+     while((classLoader=classLoader.getParent())!=null){
+         Log.d(MainActivity.class.getSimpleName(),classLoader.toString());
+        }
     }
 
-
+    public String dexName="fix_dex.dex";
     private void fixBug() {
-        try {
-            File file=Environment.getExternalStorageDirectory();
-            String dexPath=null;
-            //找到要修补的dex文件
-            for (File f:file.listFiles()){
-                if (f.getName().equals("classes2.dex")){
-                    Log.d(getClass().getSimpleName(),"找到dex文件");
-                    dexPath=f.getAbsolutePath();
-                    break;
-                }
-            }
-            if (dexPath==null){
-                Log.d(getClass().getSimpleName(),"没有找到dex文件");
-                return;
-            }
-            //加载dex文件
-            DexFile dexFile=new DexFile(dexPath);
-            Enumeration<String> entries=dexFile.entries();
-            while(entries.hasMoreElements()){
-                String s=entries.nextElement();
-                Log.d(getClass().getSimpleName(),"s:"+s);
-                          //加载解决bug的类
-            Class clazz=dexFile.loadClass(s,getClassLoader());
-            Method[] methods=clazz.getMethods();
-            for (Method m:methods){
-                //通过注解找到要解决BUG的方法
-               Replace replace=m.getAnnotation(Replace.class);
-                if (replace!=null){
-                    String oldClass=replace.clazz();
-                    String bugMethodName=replace.methoName();
-                    Class bugClass=Class.forName(oldClass);
-                    Method bugMethod=bugClass.getMethod(bugMethodName,m.getParameterTypes());
-                    Log.d(getClass().getSimpleName(),"找到了要替换的方法:"+oldClass+"->"+bugMethodName);
-                    //调用AndFix替换方法
-                    AndFix.addReplaceMethod(bugMethod,m);
-                    Log.d(getClass().getSimpleName(),"替换成功");
-                }
-            }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+      new AndFixUtil().fixBug(getClassLoader(),dexName);
+    }
+    private void fix2Bug() {
+      MergeDexUtil.copyDexFileToAppAndFix(this,dexName,true);
     }
 
     ViewPager viewpager;

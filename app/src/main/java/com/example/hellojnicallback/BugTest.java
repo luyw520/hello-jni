@@ -6,7 +6,8 @@ package com.example.hellojnicallback;
 
 public class BugTest {
 
-    public  int testBug(){
+    @Replace(clazz = "com.example.hellojnicallback.BugTest",methoName = "testBug")
+    public  int testBug() throws NullPointerException {
 
         int i=0;
         int j=10;
