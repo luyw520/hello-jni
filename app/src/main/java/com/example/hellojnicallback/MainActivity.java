@@ -41,6 +41,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alipay.euler.andfix.AndFix;
+import com.example.hellojnicallback.log.DebugLog;
+import com.example.hellojnicallback.log.KLog;
+import com.example.hellojnicallback.log.LogUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -92,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.rb3:
                         newFragment=fragment3;
+                        startActivity(new Intent(MainActivity.this,TestAidlActivity.class));
                         break;
                     case R.id.rb4:
                         newFragment=fragment4;
@@ -140,6 +144,27 @@ public class MainActivity extends AppCompatActivity {
      while((classLoader=classLoader.getParent())!=null){
          Log.d(MainActivity.class.getSimpleName(),classLoader.toString());
         }
+
+        LogUtil.d("onCreate");
+        KLog.d("onCreate");
+        DebugLog.d("onCreate");
+
+       String log="[" +
+               "  {" +
+               "    \"appName\": \"string\"," +
+               "    \"appVersion\": \"string\"," +
+               "    \"createTime\": \"string\"," +
+               "    \"deviceId\": \"string\"," +
+               "    \"ip\": \"string\",\n" +
+               "    \"mobileBrand\": \"string\"," +
+               "    \"os\": 0,\n" +
+               "    \"osVersion\": \"string\"," +
+               "    \"userId\": \"string\"" +
+               "  }" +
+               "]";
+        LogUtil.d(log);
+        DebugLog.d(log);
+        KLog.json(log);
     }
 
     public String dexName="fix_dex.dex";

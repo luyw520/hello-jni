@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hellojnicallback">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
@@ -21,6 +22,21 @@
         <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name=".LuService"
+            android:enabled="true"
+             >
+
+            <intent-filter>
+                <action android:name="com.example.hellojnicallback.LuService"></action>
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".TestAidlActivity"
+            android:label="@string/title_activity_test_aidl"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

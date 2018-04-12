@@ -17,7 +17,7 @@ android {
         javaMaxHeapSize "4g"
         preDexLibraries = false
         println "hellocallback --dexOptions"
-        def listFile=project.rootDir.absolutePath+'/app/main-dex-rule.txt'
+        def listFile = project.rootDir.absolutePath + '/app/main-dex-rule.txt'
 //        if (additionalParameters==null){
 //            println "additionalParameters --is null"
 //            additionalParameters = ['--multi-dex']
@@ -27,7 +27,7 @@ android {
 //        }
 
 
-        additionalParameters = ['--multi-dex','--main-dex-list='+listFile,'--minimal-main-dex']
+        additionalParameters = ['--multi-dex', '--main-dex-list=' + listFile, '--minimal-main-dex']
 
     }
     buildTypes {
