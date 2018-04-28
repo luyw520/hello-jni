@@ -4,19 +4,22 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.hellojnicallback.log.DebugLog;
 import com.example.hellojnicallback.log.KLog;
 import com.example.hellojnicallback.log.LogUtil;
 import com.lu.aidl.ILuAidlInterface;
 
-public class TestAidlActivity extends Activity {
+public class TestAidl2Activity extends Activity {
     ILuAidlInterface iLuAidlInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +37,23 @@ public class TestAidlActivity extends Activity {
 //            }
 //        });
 
+        PackageManager pm = getPackageManager();
+        try {
+            ActivityInfo info = pm.getActivityInfo(getComponentName(), 128);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
         ServiceConnection connection=new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
-                Log.d(TestAidlActivity.class.getSimpleName(),"onServiceConnected");
+                Log.d(TestAidl2Activity.class.getSimpleName(),"onServiceConnected");
                 iLuAidlInterface=ILuAidlInterface.Stub.asInterface(service);
             }
 
             @Override
             public void onServiceDisconnected(ComponentName name) {
-                Log.d(TestAidlActivity.class.getSimpleName(),"onServiceDisconnected");
+                Log.d(TestAidl2Activity.class.getSimpleName(),"onServiceDisconnected");
             }
         };
         Intent intent=new Intent("com.example.hellojnicallback.LuService");
@@ -65,7 +75,7 @@ public class TestAidlActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    Log.d(TestAidlActivity.class.getSimpleName(),"iLuAidlInterface.add(1,2):"+iLuAidlInterface.add(1,2));
+                    Log.d(TestAidl2Activity.class.getSimpleName(),"iLuAidlInterface.add(1,2):"+iLuAidlInterface.add(1,2));
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -89,6 +99,8 @@ public class TestAidlActivity extends Activity {
                 "  }" +
                 "]";
         DebugLog.d(log);
+
+        ((TextView)findViewById(R.id.tvMsg)).setText("TestAidl2Activity");
     }
 
 }

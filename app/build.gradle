@@ -84,4 +84,11 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.volley:volley:1.1.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    //下面两个是RxJava 和RxAndroid
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 }

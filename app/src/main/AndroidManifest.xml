@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="android.support.multidex.MultiDexApplication"
+        android:name=".MyAppcation"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -26,17 +26,21 @@
 
         <service
             android:name=".LuService"
-            android:enabled="true"
-             >
-
+            android:enabled="true">
             <intent-filter>
-                <action android:name="com.example.hellojnicallback.LuService"></action>
+                <action android:name="com.example.hellojnicallback.LuService" />
             </intent-filter>
         </service>
 
         <activity
             android:name=".TestAidlActivity"
             android:label="@string/title_activity_test_aidl"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".HookTestActivity" />
+        <activity android:name=".Main3dActivity" />
+        <activity
+            android:name=".Main3Activity"
+            android:label="@string/title_activity_main3"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

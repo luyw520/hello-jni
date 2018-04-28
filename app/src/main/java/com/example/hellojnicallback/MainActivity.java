@@ -49,6 +49,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 import static com.example.hellojnicallback.MergeDexUtil.FIX_DEX_PATH;
 
 public class MainActivity extends AppCompatActivity {
@@ -95,9 +100,15 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.rb3:
                         newFragment=fragment3;
-                        startActivity(new Intent(MainActivity.this,TestAidlActivity.class));
+//                        try {
+//                            new HookUtil().hookSystem();
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+                        startActivity(new Intent(MainActivity.this,TestAidl2Activity.class));
                         break;
                     case R.id.rb4:
+                        startActivity(new Intent(MainActivity.this,Main3dActivity.class));
                         newFragment=fragment4;
                         break;
                 }
@@ -149,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         KLog.d("onCreate");
         DebugLog.d("onCreate");
 
-       String log="[" +
+       String log="aaa[" +
                "  {" +
                "    \"appName\": \"string\"," +
                "    \"appVersion\": \"string\"," +
@@ -165,6 +176,112 @@ public class MainActivity extends AppCompatActivity {
         LogUtil.d(log);
         DebugLog.d(log);
         KLog.json(log);
+        try {
+            new HookUtil(this).hookSystem();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+//        Observable.create(new Observable.OnSubscribe<String>() {
+//        })
+//        HashMap hashMap;hashMap.put()+
+
+
+        createObserable();
+
+
+
+    }
+    //创建一个观察者方法
+    public static void createObserable(){
+        //定义被观察者
+        Observable<String> observable = Observable.create(new Observable.OnSubscribe<String>() {
+            @Override public void call(Subscriber<? super String> subscriber) {
+                DebugLog.d("call:"+Thread.currentThread().getName()+"");
+                if (!subscriber.isUnsubscribed()){
+                    subscriber.onNext("hello");// 发送事件
+                    subscriber.onNext("world");// 发送事件
+                    subscriber.onNext("dddd");// 发送事件
+                    subscriber.onCompleted();// 完成事件
+                }
+            }
+        });
+        //订阅者
+        Subscriber<String> showSub = new Subscriber<String>() {
+            @Override public void onCompleted() {
+                Log.i("adu",Thread.currentThread().getName()+",onCompleted");
+            }
+            @Override public void onError(Throwable e) {
+                Log.i("adu","onError");
+            }
+            @Override public void onNext(String s) {
+                Log.i("adu","onNext:"+s);
+            }
+        };
+        observable.subscribeOn(Schedulers.io()).subscribe(new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+                Log.i("adu1",Thread.currentThread().getName()+"onCompletedonCompleted");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(String s) {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Log.i("adu1","onNextonNext:"+s);
+            }
+        });
+//        observable.subscribeOn(Schedulers.io()).subscribe(new Subscriber<String>() {
+//            @Override
+//            public void onCompleted() {
+//                Log.i("adu2",Thread.currentThread().getName()+"onCompletedonCompleted");
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//
+//            }
+//
+//            @Override
+//            public void onNext(String s) {
+//                try {
+//                    Thread.sleep(2000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                Log.i("adu2","onNextonNext:"+s);
+//            }
+//        });
+//        observable.subscribeOn(Schedulers.io()).subscribe(new Subscriber<String>() {
+//            @Override
+//            public void onCompleted() {
+//                Log.i("adu3",Thread.currentThread().getName()+"onCompletedonCompleted");
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//
+//            }
+//
+//            @Override
+//            public void onNext(String s) {
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                Log.i("adu3","onNextonNext:"+s);
+//            }
+//        });
+       observable.subscribeOn(AndroidSchedulers.mainThread()).subscribe(showSub);//关联被观察者
     }
 
     public String dexName="fix_dex.dex";

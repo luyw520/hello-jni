@@ -3,7 +3,6 @@ package com.example.hellojnicallback.log;
 import android.util.Log;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DebugLog {
@@ -47,7 +46,20 @@ public class DebugLog {
 
         String message;
         boolean isJson=false;
+        StringBuffer stringBuffer=new StringBuffer();
         try {
+            int index=-1;
+            if(msg.contains("{")){
+                index=msg.indexOf("{");
+            }else if (msg.contains("[")){
+                index=msg.indexOf("{");
+            }
+
+            if (index!=-1){
+                stringBuffer.append(msg.substring(0,index));
+                msg=msg.substring(index);
+            }
+
             if (msg.startsWith("{")) {
                 JSONObject jsonObject = new JSONObject(msg);
                 message = jsonObject.toString(KLog.JSON_INDENT);
@@ -60,11 +72,11 @@ public class DebugLog {
                 message = msg;
                 isJson=false;
             }
-        } catch (JSONException e) {
+        } catch (Exception e) {
             message = msg;
             isJson=false;
         }
-
+        stringBuffer.append(message);
 //        message = headString + KLog.LINE_SEPARATOR + message;
 //        String[] lines = message.split(KLog.LINE_SEPARATOR);
 //        for (String line : lines) {
@@ -78,7 +90,7 @@ public class DebugLog {
 //            Log.d(tag, "║ " + line);
 //        }
 //        KLogUtil.printLine(tag, false);
-        return message;
+        return stringBuffer.toString();
     }
     private static void getMethodNames(StackTraceElement[] sElements) {
         className = sElements[1].getFileName();
