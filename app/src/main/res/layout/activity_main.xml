@@ -18,11 +18,12 @@
     </android.support.v4.view.ViewPager>
     <com.example.hellojnicallback.MyViewGroup
         android:id="@+id/content"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rg">
         <com.example.hellojnicallback.MyView
+            android:id="@+id/myView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         </com.example.hellojnicallback.MyViewGroup>
@@ -34,7 +35,7 @@
         android:gravity="center"
         android:text="Hello World!"
         android:id="@+id/hellojniMsg"
-        android:visibility="visible"
+        android:visibility="gone"
         tools:layout_editor_absoluteX="129dp"
         tools:layout_editor_absoluteY="222dp"
         tools:layout_constraintLeft_creator="0"
@@ -48,6 +49,7 @@
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:orientation="horizontal">
         <RadioButton
             android:id="@+id/rb1"

@@ -35,6 +35,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -100,11 +101,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.rb3:
                         newFragment=fragment3;
-//                        try {
-//                            new HookUtil().hookSystem();
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
                         startActivity(new Intent(MainActivity.this,TestAidl2Activity.class));
                         break;
                     case R.id.rb4:
@@ -160,36 +156,40 @@ public class MainActivity extends AppCompatActivity {
         KLog.d("onCreate");
         DebugLog.d("onCreate");
 
-       String log="aaa[" +
-               "  {" +
-               "    \"appName\": \"string\"," +
-               "    \"appVersion\": \"string\"," +
-               "    \"createTime\": \"string\"," +
-               "    \"deviceId\": \"string\"," +
-               "    \"ip\": \"string\",\n" +
-               "    \"mobileBrand\": \"string\"," +
-               "    \"os\": 0,\n" +
-               "    \"osVersion\": \"string\"," +
-               "    \"userId\": \"string\"" +
-               "  }" +
-               "]";
-        LogUtil.d(log);
-        DebugLog.d(log);
-        KLog.json(log);
+//       String log="aaa[" +
+//               "  {" +
+//               "    \"appName\": \"string\"," +
+//               "    \"appVersion\": \"string\"," +
+//               "    \"createTime\": \"string\"," +
+//               "    \"deviceId\": \"string\"," +
+//               "    \"ip\": \"string\",\n" +
+//               "    \"mobileBrand\": \"string\"," +
+//               "    \"os\": 0,\n" +
+//               "    \"osVersion\": \"string\"," +
+//               "    \"userId\": \"string\"" +
+//               "  }" +
+//               "]";
+//        LogUtil.d(log);
+//        DebugLog.d(log);
+//        KLog.json(log);
         try {
             new HookUtil(this).hookSystem();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-//        Observable.create(new Observable.OnSubscribe<String>() {
-//        })
-//        HashMap hashMap;hashMap.put()+
+        findViewById(R.id.content).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.myView).invalidate();
+            }
+        });
 
-
-        createObserable();
-
-
+        ViewParent viewParent=findViewById(R.id.myView).getParent();
+        do{
+            DebugLog.d(viewParent.toString());
+            viewParent=viewParent.getParent();
+        }while(viewParent!=null);
 
     }
     //创建一个观察者方法
@@ -345,9 +345,6 @@ public class MainActivity extends AppCompatActivity {
               transaction.add(R.id.content,newFragment);
           }
 
-//          if (newFragment.isDetached()){
-//              transaction.attach(newFragment);
-//          }
           transaction.show(newFragment);
       }
       TextView textView;
@@ -377,11 +374,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public static class MyFragment extends Fragment{
         public  String msg;
-//        public static MyFragment getMyFragment(String m){
-//            msg=m;
-//            MyFragment myFragment=new MyFragment();
-//            return myFragment;
-//        }
         public static MyFragment newInstance(String args) {
             MyFragment fragment = new MyFragment();
             if (fragment != null) {
@@ -395,18 +387,6 @@ public class MainActivity extends AppCompatActivity {
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//            TextView textView=new TextView(getContext());
-//            textView.setText(msg);
-////            ViewGroup.LayoutParams params=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-////            container.addView(textView,params);
-//            Log.d("MyFragment"+msg,"onCreateView()");
-//            textView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Toast.makeText(getContext(),msg,Toast.LENGTH_LONG).show();
-//                    startActivity(new Intent(getActivity(),Main2Activity.class));
-//                }
-//            });
             int layoutId=0;
             if (msg.equals("1")){
                 layoutId=R.layout.fragment_1;

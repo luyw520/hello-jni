@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mroot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <View
+            android:id="@+id/content_root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+        <!--中间+号-->
+
+        <RelativeLayout
+            android:id="@+id/rl_menu_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#AB000000"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:id="@+id/rl_arc_menu_run"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y300"
+                android:visibility="visible"
+                android:layout_alignParentBottom="true">
+
+                <ImageView
+                    android:id="@+id/morerun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/morerun"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/path"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/y70"
+                    android:layout_marginTop="@dimen/y70"
+                    android:layout_toLeftOf="@+id/morerun"
+                    android:src="@drawable/path"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/y70"
+                    android:layout_marginTop="@dimen/y70"
+                    android:layout_toRightOf="@+id/morerun"
+                    android:src="@drawable/weight"
+                    android:visibility="invisible" />
+
+                <RelativeLayout
+                    android:id="@+id/rlView"
+                    android:layout_width="@dimen/x150"
+                    android:layout_height="@dimen/y160"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:id="@+id/iv_cicle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/tab_more" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <!--血压功能中间+号-->
+
+            <RelativeLayout
+                android:id="@+id/rl_arc_menu_blood"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y300"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true">
+
+
+                <ImageView
+                    android:id="@+id/morerun2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/y20"
+                    android:layout_toLeftOf="@+id/line"
+                    android:src="@drawable/morerun"
+                    android:visibility="visible" />
+
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/weight2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/y20"
+                    android:layout_toRightOf="@+id/line"
+                    android:src="@drawable/weight"
+                    android:visibility="visible" />
+
+
+                <ImageView
+                    android:id="@+id/path2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/y30"
+                    android:layout_marginTop="@dimen/y70"
+                    android:layout_toLeftOf="@+id/morerun2"
+                    android:src="@drawable/path"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/btn_item_bloodpressure2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/y30"
+                    android:layout_marginTop="@dimen/y70"
+                    android:layout_toRightOf="@+id/weight2"
+                    android:src="@drawable/menum_blood_pressure"
+                    android:visibility="visible" />
+
+                <RelativeLayout
+                    android:id="@+id/rlView2"
+                    android:layout_width="@dimen/x150"
+                    android:layout_height="@dimen/y160"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:id="@+id/iv_blood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/tab_more" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_run"
+                android:layout_width="@dimen/x150"
+                android:layout_height="@dimen/y160"
+                android:visibility="invisible"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:id="@+id/iv_run"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/tab_more" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

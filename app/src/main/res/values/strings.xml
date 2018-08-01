@@ -3,4 +3,6 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_test_aidl">TestAidlActivity</string>
     <string name="title_activity_main3">Main3Activity</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_acr_menu">AcrMenuActivity</string>
 </resources>
