@@ -39,6 +39,7 @@ public class TestActivity extends AppCompatActivity {
         activityInfoList.add(new ActivityInfo("AndFix示例",MainActivity.class));
         activityInfoList.add(new ActivityInfo("Aidl示例",TestAidl2Activity.class));
         activityInfoList.add(new ActivityInfo("ArcMenu示例",AcrMenuActivity.class));
+        activityInfoList.add(new ActivityInfo("NotificationActivity示例",NotificationActivity.class));
         LuAdapter<ActivityInfo> adapter=new LuAdapter<ActivityInfo>(this,activityInfoList,android.R.layout.simple_list_item_1) {
             @Override
             public void convert(ViewHolder helper, ActivityInfo item) {
