@@ -1,7 +1,9 @@
 package com.example.hellojnicallback;
 
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+
+import com.example.hellojnicallback.log.DebugLog;
 
 public class NotificationActivity extends AppCompatActivity {
 
@@ -50,15 +54,28 @@ public class NotificationActivity extends AppCompatActivity {
 
         switch (view.getId()){
             case R.id.btnStartService:
-                startService(new Intent(this,MyNotificationListenerService.class));
+//                startService(new Intent(this,MyNotificationListenerService.class));
                 break;
             case R.id.btnTestService:
+                DebugLog.d("toggleNotificationListenerService");
+                toggleNotificationListenerService();
                 break;
             case R.id.btnEnableService:
 //                isNotificationEnabled();
                 startActivityForResult(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"), 1);
                 break;
         }
+
+    }
+    /**
+     * 重新启动服务
+     */
+    private void toggleNotificationListenerService() {
+        ComponentName thisComponent = new ComponentName(this,  MyNotificationListenerService.class);
+        PackageManager pm = getPackageManager();
+        pm.setComponentEnabledSetting(thisComponent, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        pm.setComponentEnabledSetting(thisComponent, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+
     }
 
     @Override

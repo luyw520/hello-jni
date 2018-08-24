@@ -42,7 +42,7 @@ public class MyNotificationListenerService extends NotificationListenerService {
             @Override
             public void run() {
                 getField();
-                handler.postDelayed(this,500);
+//                handler.postDelayed(this,500);
             }
         },500);
     }
