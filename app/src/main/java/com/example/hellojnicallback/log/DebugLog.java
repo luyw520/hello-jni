@@ -121,6 +121,13 @@ public class DebugLog {
         getMethodNames(new Throwable().getStackTrace());
         Log.i(className, createLog(message));
     }
+    public static void d(String tag,String message) {
+        if (!isDebuggable())
+            return;
+
+        getMethodNames(new Throwable().getStackTrace());
+        Log.i(className, createLog(message));
+    }
 
     public static void v(String message) {
         if (!isDebuggable())

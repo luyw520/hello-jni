@@ -9,6 +9,10 @@ import android.widget.ListView;
 
 import com.example.hellojnicallback.adapter.LuAdapter;
 import com.example.hellojnicallback.adapter.ViewHolder;
+import com.example.hellojnicallback.binder.BookManagerActivity;
+import com.example.hellojnicallback.binderpool.BinderPoolActivity;
+import com.example.hellojnicallback.messenger.MessengerActivity;
+import com.example.hellojnicallback.socket.TCPClientActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,17 +26,6 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         listView= (ListView) findViewById(R.id.listView);
 
@@ -40,6 +33,10 @@ public class TestActivity extends AppCompatActivity {
         activityInfoList.add(new ActivityInfo("Aidl示例",TestAidl2Activity.class));
         activityInfoList.add(new ActivityInfo("ArcMenu示例",AcrMenuActivity.class));
         activityInfoList.add(new ActivityInfo("NotificationActivity示例",NotificationActivity.class));
+        activityInfoList.add(new ActivityInfo("aidl callback",BookManagerActivity.class));
+        activityInfoList.add(new ActivityInfo("BinderPool",BinderPoolActivity.class));
+        activityInfoList.add(new ActivityInfo("Messenger",MessengerActivity.class));
+        activityInfoList.add(new ActivityInfo("TCPClientActivity",TCPClientActivity.class));
         LuAdapter<ActivityInfo> adapter=new LuAdapter<ActivityInfo>(this,activityInfoList,android.R.layout.simple_list_item_1) {
             @Override
             public void convert(ViewHolder helper, ActivityInfo item) {
