@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
@@ -73,24 +72,34 @@
             android:name=".NotificationActivity"
             android:label="@string/title_activity_notification"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".binder.BookManagerActivity"/>
-        <activity android:name=".binderpool.BinderPoolActivity"/>
-        <service android:name=".binder.BookManagerService"/>
-        <service android:name=".binderpool.BinderPoolService"/>
-        <activity android:name=".messenger.MessengerActivity"/>
-        <service android:name=".messenger.MessengerService"/>
-        <activity android:name=".socket.TCPClientActivity"/>
-        <service android:name=".socket.TCPServerService"/>
+        <activity android:name=".binder.BookManagerActivity" />
+        <activity android:name=".binderpool.BinderPoolActivity" />
+
+        <service android:name=".binder.BookManagerService" />
+        <service android:name=".binderpool.BinderPoolService" />
+
+        <activity android:name=".messenger.MessengerActivity" />
+
+        <service android:name=".messenger.MessengerService" />
+
+        <activity android:name=".socket.TCPClientActivity" />
+
+        <service android:name=".socket.TCPServerService" />
         <service
             android:name=".MyNotificationListenerService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter android:priority="1000">
-                <action android:name="android.service.notification.NotificationListenerService"/>
+                <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
-
         </service>
+
+        <activity
+            android:name=".tinker.TinkerTestActivity"
+            android:label="@string/title_activity_tinker_test"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <service android:name=".SampleResultService"/>
     </application>
 
 </manifest>

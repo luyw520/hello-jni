@@ -13,6 +13,7 @@ import com.example.hellojnicallback.binder.BookManagerActivity;
 import com.example.hellojnicallback.binderpool.BinderPoolActivity;
 import com.example.hellojnicallback.messenger.MessengerActivity;
 import com.example.hellojnicallback.socket.TCPClientActivity;
+import com.example.hellojnicallback.tinker.TinkerTestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class TestActivity extends AppCompatActivity {
         activityInfoList.add(new ActivityInfo("BinderPool",BinderPoolActivity.class));
         activityInfoList.add(new ActivityInfo("Messenger",MessengerActivity.class));
         activityInfoList.add(new ActivityInfo("TCPClientActivity",TCPClientActivity.class));
+        activityInfoList.add(new ActivityInfo("Tinker Test",TinkerTestActivity.class));
         LuAdapter<ActivityInfo> adapter=new LuAdapter<ActivityInfo>(this,activityInfoList,android.R.layout.simple_list_item_1) {
             @Override
             public void convert(ViewHolder helper, ActivityInfo item) {

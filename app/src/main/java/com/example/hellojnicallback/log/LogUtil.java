@@ -82,7 +82,7 @@ public class LogUtil {
         String tag = contents[0];
         String msg = contents[1];
         String headString = contents[2];
-        Log.d(tag,headString + msg);
+        Log.i(tag,headString + msg);
 //        switch (type) {
 //
 //            case V:
