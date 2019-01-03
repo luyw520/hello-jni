@@ -98,8 +98,14 @@
         <activity
             android:name=".tinker.TinkerTestActivity"
             android:label="@string/title_activity_tinker_test"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service android:name=".SampleResultService" />
+
+        <activity
+            android:name=".AbstractProcessorActivity"
+            android:label="@string/title_activity_abstract_processor"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <service android:name=".SampleResultService"/>
     </application>
 
 </manifest>

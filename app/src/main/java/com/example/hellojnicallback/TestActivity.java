@@ -39,6 +39,7 @@ public class TestActivity extends AppCompatActivity {
         activityInfoList.add(new ActivityInfo("Messenger",MessengerActivity.class));
         activityInfoList.add(new ActivityInfo("TCPClientActivity",TCPClientActivity.class));
         activityInfoList.add(new ActivityInfo("Tinker Test",TinkerTestActivity.class));
+        activityInfoList.add(new ActivityInfo("AbstractProcessor Test",AbstractProcessorActivity.class));
         LuAdapter<ActivityInfo> adapter=new LuAdapter<ActivityInfo>(this,activityInfoList,android.R.layout.simple_list_item_1) {
             @Override
             public void convert(ViewHolder helper, ActivityInfo item) {

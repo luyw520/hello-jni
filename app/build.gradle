@@ -23,7 +23,7 @@ android {
         buildConfigField "String", "TINKER_ID", "\"${getTinkerIdValue()}\""
         buildConfigField "String", "PLATFORM", "\"all\""
 
-
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
     }
     dexOptions {
         javaMaxHeapSize "4g"
@@ -37,7 +37,6 @@ android {
 //            additionalParameters+='--main-dex-list='+listFile
 //            additionalParameters+='--minimal-main-dex'
 //        }
-
 
 //        additionalParameters = ['--multi-dex', '--main-dex-list=' + listFile, '--minimal-main-dex']
 
@@ -104,7 +103,7 @@ dependencies {
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 
-
+    compile project(":javalib")
 
     if (is_gradle_3()) {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
