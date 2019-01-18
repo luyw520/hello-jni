@@ -1,9 +1,12 @@
-package com.example.hellojnicallback;
+package com.example.hellojnicallback.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.hellojnicallback.MainArcMenu;
+import com.example.hellojnicallback.R;
 
 import static com.example.hellojnicallback.MainArcMenu.DURATIONMILLIS;
 

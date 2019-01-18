@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.hellojnicallback;
+package com.example.hellojnicallback.activity;;
 
 import android.Manifest;
 import android.app.Activity;
@@ -42,6 +42,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alipay.euler.andfix.AndFix;
+import com.example.hellojnicallback.AndFixUtil;
+import com.example.hellojnicallback.BugTest;
+import com.example.hellojnicallback.HookUtil;
+import com.example.hellojnicallback.MergeDexUtil;
+import com.example.hellojnicallback.R;
+import com.example.hellojnicallback.activity.Main2Activity;
+import com.example.hellojnicallback.activity.Main3dActivity;
 import com.example.hellojnicallback.log.DebugLog;
 import com.example.hellojnicallback.log.KLog;
 import com.example.hellojnicallback.log.LogUtil;
@@ -56,6 +63,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static com.example.hellojnicallback.MergeDexUtil.FIX_DEX_PATH;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -101,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.rb3:
                         newFragment=fragment3;
-                        startActivity(new Intent(MainActivity.this,TestAidl2Activity.class));
+                        startActivity(new Intent(MainActivity.this, TestAidl2Activity.class));
                         break;
                     case R.id.rb4:
                         startActivity(new Intent(MainActivity.this,Main3dActivity.class));

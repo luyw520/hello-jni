@@ -6,6 +6,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.example.hellojnicallback.activity.TestAidlActivity;
 import com.lu.aidl.ILuAidlInterface;
 
 public class LuService extends Service {

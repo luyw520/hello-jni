@@ -1,7 +1,9 @@
-package com.example.hellojnicallback;
+package com.example.hellojnicallback.activity;;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.hellojnicallback.R;
 
 public class HookTestActivity extends AppCompatActivity {
 

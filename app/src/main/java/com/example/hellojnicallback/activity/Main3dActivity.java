@@ -1,4 +1,4 @@
-package com.example.hellojnicallback;
+package com.example.hellojnicallback.activity;;
 
 import android.graphics.Camera;
 import android.graphics.Matrix;
@@ -10,6 +10,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
+import com.example.hellojnicallback.R;
 import com.example.hellojnicallback.log.DebugLog;
 
 public class Main3dActivity extends AppCompatActivity {

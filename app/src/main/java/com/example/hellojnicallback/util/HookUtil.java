@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.hellojnicallback.activity.TestAidlActivity;
 import com.example.hellojnicallback.log.DebugLog;
 
 import java.lang.reflect.Field;

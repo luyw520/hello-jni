@@ -40,9 +40,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".activity.MainActivity" />
         <activity
-            android:name=".Main2Activity"
+            android:name=".activity.Main2Activity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
 
@@ -55,21 +55,21 @@
         </service>
 
         <activity
-            android:name=".TestAidlActivity"
+            android:name=".activity.TestAidlActivity"
             android:label="@string/title_activity_test_aidl"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".HookTestActivity" />
-        <activity android:name=".Main3dActivity" />
+        <activity android:name=".activity.HookTestActivity" />
+        <activity android:name=".activity.Main3dActivity" />
         <activity
-            android:name=".Main3Activity"
+            android:name=".activity.Main3Activity"
             android:label="@string/title_activity_main3"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AcrMenuActivity"
+            android:name=".activity.AcrMenuActivity"
             android:label="@string/title_activity_acr_menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".NotificationActivity"
+            android:name=".activity.NotificationActivity"
             android:label="@string/title_activity_notification"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".binder.BookManagerActivity" />
@@ -103,9 +103,10 @@
         <service android:name=".SampleResultService" />
 
         <activity
-            android:name=".AbstractProcessorActivity"
+            android:name=".activity.AbstractProcessorActivity"
             android:label="@string/title_activity_abstract_processor"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.AopActivity" />
     </application>
 
 </manifest>

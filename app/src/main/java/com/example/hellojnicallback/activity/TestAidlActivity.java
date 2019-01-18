@@ -1,4 +1,4 @@
-package com.example.hellojnicallback;
+package com.example.hellojnicallback.activity;;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import com.example.hellojnicallback.R;
 import com.example.hellojnicallback.log.DebugLog;
 import com.example.hellojnicallback.log.KLog;
 import com.example.hellojnicallback.log.LogUtil;

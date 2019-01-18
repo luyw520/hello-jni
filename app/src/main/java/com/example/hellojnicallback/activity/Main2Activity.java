@@ -1,4 +1,4 @@
-package com.example.hellojnicallback;
+package com.example.hellojnicallback.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+
+import com.example.hellojnicallback.R;
 
 public class Main2Activity extends AppCompatActivity {
 

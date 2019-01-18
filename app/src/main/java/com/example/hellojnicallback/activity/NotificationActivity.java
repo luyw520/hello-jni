@@ -1,4 +1,4 @@
-package com.example.hellojnicallback;
+package com.example.hellojnicallback.activity;;
 
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.example.hellojnicallback.MyNotificationListenerService;
+import com.example.hellojnicallback.R;
 import com.example.hellojnicallback.log.DebugLog;
 
 public class NotificationActivity extends AppCompatActivity {

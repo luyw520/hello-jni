@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package com.example.hellojnicallback;
+package com.example.hellojnicallback.util;
+
+import com.example.hellojnicallback.BuildConfig;
 
 /**
  * Created by zhangshaowen on 16/6/30.
