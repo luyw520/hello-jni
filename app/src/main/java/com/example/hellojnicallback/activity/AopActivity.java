@@ -14,7 +14,7 @@ public class AopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aop);
 
-        setTitle("AopActivity");
+        setTitle("DraggerTestActivity");
 
         sayHello("hahaha");
 

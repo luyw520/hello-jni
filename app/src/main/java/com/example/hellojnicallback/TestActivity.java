@@ -17,6 +17,7 @@ import com.example.hellojnicallback.adapter.LuAdapter;
 import com.example.hellojnicallback.adapter.ViewHolder;
 import com.example.hellojnicallback.binder.BookManagerActivity;
 import com.example.hellojnicallback.binderpool.BinderPoolActivity;
+import com.example.hellojnicallback.dragger.DraggerTestActivity;
 import com.example.hellojnicallback.messenger.MessengerActivity;
 import com.example.hellojnicallback.socket.TCPClientActivity;
 import com.example.hellojnicallback.tinker.TinkerTestActivity;
@@ -47,6 +48,7 @@ public class TestActivity extends AppCompatActivity {
         activityInfoList.add(new ActivityInfo("Tinker Test",TinkerTestActivity.class));
         activityInfoList.add(new ActivityInfo("AbstractProcessor Test",AbstractProcessorActivity.class));
         activityInfoList.add(new ActivityInfo("AopActivity Test",AopActivity.class));
+        activityInfoList.add(new ActivityInfo("DraggerTestActivity Test",DraggerTestActivity.class));
         LuAdapter<ActivityInfo> adapter=new LuAdapter<ActivityInfo>(this,activityInfoList,android.R.layout.simple_list_item_1) {
             @Override
             public void convert(ViewHolder helper, ActivityInfo item) {

@@ -3,6 +3,8 @@ package com.example.hellojnicallback;
 
 import com.tencent.tinker.loader.app.TinkerApplication;
 
+import dagger.android.DaggerApplication;
+
 /**
  * Created by Administrator on 2018/4/17 0017.
  */
@@ -16,6 +18,8 @@ public class MyAppcation extends TinkerApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        DaggerApplication application;
 
     }
 }
