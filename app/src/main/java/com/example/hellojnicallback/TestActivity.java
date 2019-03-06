@@ -12,6 +12,7 @@ import com.example.hellojnicallback.activity.AcrMenuActivity;
 import com.example.hellojnicallback.activity.AopActivity;
 import com.example.hellojnicallback.activity.MainActivity;
 import com.example.hellojnicallback.activity.NotificationActivity;
+import com.example.hellojnicallback.activity.SuperTextViewActivity;
 import com.example.hellojnicallback.activity.TestAidl2Activity;
 import com.example.hellojnicallback.adapter.LuAdapter;
 import com.example.hellojnicallback.adapter.ViewHolder;
@@ -49,6 +50,7 @@ public class TestActivity extends AppCompatActivity {
         activityInfoList.add(new ActivityInfo("AbstractProcessor Test",AbstractProcessorActivity.class));
         activityInfoList.add(new ActivityInfo("AopActivity Test",AopActivity.class));
         activityInfoList.add(new ActivityInfo("DraggerTestActivity Test",DraggerTestActivity.class));
+        activityInfoList.add(new ActivityInfo("SuperTextViewActivity Test",SuperTextViewActivity.class));
         LuAdapter<ActivityInfo> adapter=new LuAdapter<ActivityInfo>(this,activityInfoList,android.R.layout.simple_list_item_1) {
             @Override
             public void convert(ViewHolder helper, ActivityInfo item) {

@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/aoplib/aoplib.iml" filepath="$PROJECT_DIR$/aoplib/aoplib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hello-jniCallback.iml" filepath="$PROJECT_DIR$/hello-jniCallback.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hello-jni.iml" filepath="$PROJECT_DIR$/hello-jni.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javalib/javalib.iml" filepath="$PROJECT_DIR$/javalib/javalib.iml" />
     </modules>
   </component>
 </project>

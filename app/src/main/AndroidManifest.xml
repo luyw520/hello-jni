@@ -72,6 +72,10 @@
             android:name=".activity.NotificationActivity"
             android:label="@string/title_activity_notification"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SuperTextViewActivity"
+            android:label="@string/title_activity_notification"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".binder.BookManagerActivity" />
         <activity android:name=".binderpool.BinderPoolActivity" />
 
