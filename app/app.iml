@@ -22,7 +22,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/build/intermediates/classes/debug" />
     <output-test url="file://$MODULE_DIR$/build/intermediates/classes/test/debug" />
     <exclude-output />
@@ -125,6 +125,7 @@
     <orderEntry type="library" name="Gradle: com.android.volley:volley-1.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.leakcanary:leakcanary-analyzer:1.4-beta2@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.chenBingX:SuperTextView-v3.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.0.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: io.reactivex:rxjava:1.1.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:transition-25.4.0" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.leakcanary:leakcanary-android-1.4-beta2" level="project" />
@@ -149,6 +150,7 @@
     <orderEntry type="library" name="Gradle: com.android.support:support-core-utils-25.4.0" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.leakcanary:leakcanary-watcher:1.4-beta2@jar" level="project" />
     <orderEntry type="module" module-name="javalib" />
+    <orderEntry type="module" module-name="ble" />
     <orderEntry type="module" module-name="aoplib" />
   </component>
 </module>

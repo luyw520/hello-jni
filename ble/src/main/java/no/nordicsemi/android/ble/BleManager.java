@@ -550,6 +550,8 @@ public abstract class BleManager<E extends BleManagerCallbacks> extends TimeoutH
 		//
 		// Starting from nRF Logger 2.1.3, you may use log-timber and plant nRFLoggerTree.
 		// https://github.com/NordicSemiconductor/nRF-Logger-API
+		Log.i(getClass().getSimpleName(),message);
+		Log.w(getClass().getSimpleName(),message);
 	}
 
 	@Override
