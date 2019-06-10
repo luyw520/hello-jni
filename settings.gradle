@@ -1,1 +1,1 @@
-include ':app', ':javalib', ':aoplib'
+include ':app', ':javalib', ':aoplib',':ble'

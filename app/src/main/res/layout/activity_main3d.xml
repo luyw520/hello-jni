@@ -11,14 +11,14 @@
         android:layout_height="wrap_content"
         android:onClick="rotate"
         android:text="rotate"/>
-    <com.example.hellojnicallback.MyImageView
+    <com.example.lu.MyImageView
         android:id="@+id/img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/attack"
         android:layout_centerInParent="true"
         >
-    </com.example.hellojnicallback.MyImageView>
+    </com.example.lu.MyImageView>
 </RelativeLayout>
 
 

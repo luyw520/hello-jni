@@ -5,7 +5,7 @@
     android:id="@+id/activity_hello_jnicallback"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.hellojnicallback.activity.MainActivity"
+    tools:context="com.example.lu.activity.MainActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="81dp">
     <android.support.v4.view.ViewPager
@@ -16,17 +16,17 @@
         android:layout_above="@+id/rg">
 
     </android.support.v4.view.ViewPager>
-    <com.example.hellojnicallback.MyViewGroup
+    <com.example.lu.MyViewGroup
         android:id="@+id/content"
         android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rg">
-        <com.example.hellojnicallback.MyView
+        <com.example.lu.MyView
             android:id="@+id/myView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        </com.example.hellojnicallback.MyViewGroup>
+        </com.example.lu.MyViewGroup>
 
     <TextView
         android:layout_above="@+id/rg"
